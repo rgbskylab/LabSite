@@ -1,0 +1,140 @@
+# ─────────────────────────────────────────────────────────────
+#  졸업생(Alumni) — members.yml 에서 옮겨온 항목에
+#  아래 두 필드만 추가하면 됩니다:
+#     graduated: 졸업연도 (숫자)
+#     now:       현재 소속/직함 (ko/en)
+#
+#  degree 값: phd | ms | postdoc | undergrad  (받은 학위)
+#  사이트에서 졸업연도 내림차순으로 자동 정렬됩니다.
+#
+#  ⚠️ graduated(졸업연도)는 실제 값을 몰라 임시로 2025 로 넣었습니다.
+#     각자 실제 졸업연도로 꼭 수정하세요! (연도별로 자동 그룹핑됩니다)
+#     now(현직)는 사이트에 있던 소속을 반영했고, 한글 표기는 확인이 필요할 수 있습니다.
+# ─────────────────────────────────────────────────────────────
+
+# ── 박사 (Ph.D.) ──────────────────────────────────────────────
+# ╔═ 복붙용 전체 예시 ═ 복사 → 각 줄 맨 앞 "# " 제거 → 수정 ═╗
+# - id: hong-gildong                # 고유값
+#   name:
+#     ko: 홍길동
+#     en: Gildong Hong
+#   degree: phd                     # phd | ms | postdoc | undergrad (받은 학위)
+#   graduated: 2024                 # 졸업 연도, 숫자 — 연도별 자동 정렬
+#   photo: /members/hong-gildong.jpg  # public/members/ 에 저장. 없으면 ""
+#   now:                            # 현재 소속/직함 (선택)
+#     ko: 삼성전자 책임연구원
+#     en: Research Engineer, Samsung Electronics
+#   thesis:                         # 학위논문 제목 (선택)
+#     ko: 3D 인체 복원을 위한 딥러닝 기법
+#     en: Deep Learning Methods for 3D Human Reconstruction
+#   homepage: https://example.com   # (선택)
+#   linkedin: gildong-hong          # (선택) 아이디만 적어도 됨
+#   scholar: XXXX                   # (선택) Scholar user 아이디 또는 전체 주소
+#   github: gildong                 # (선택)
+#   links:                          # (선택) 그 외 링크
+#     - { label: ORCID, url: https://orcid.org/0000-0000-0000-0000 }
+# ╚════════════════════════════════════════════════════════════╝
+
+- id: seunghyun-choi
+  name: { ko: 최승현, en: Seunghyun Choi }
+  photo: /members/seunghyun-choi.jpg
+  degree: phd
+  graduated: 2025
+
+- id: changgyun-kim
+  name: { ko: 김창균, en: Changgyun Kim }
+  photo: /members/changgyun-kim.jpg
+  degree: phd
+  graduated: 2025
+
+- id: sangwoo-park
+  name: { ko: 박상우, en: Sangwoo Park }
+  photo: /members/sangwoo-park.png
+  degree: phd
+  graduated: 2025
+  now: { ko: 큐빅테크, en: Cubic Tech }
+
+- id: sukil-cha
+  name: { ko: 차석일, en: Sukil Cha }
+  photo: /members/sukil-cha.jpg
+  degree: phd
+  graduated: 2025
+  now: { ko: 한국연구재단, en: National Research Foundation of Korea }
+
+- id: joongsoo-kim
+  name: { ko: 김중수, en: Joong Soo Kim }
+  photo: /members/joongsoo-kim.jpg
+  degree: phd
+  graduated: 2025
+  now: { ko: 한국창의융합연구원, en: Korea Creative Convergence Research Institute }
+
+- id: hyunsook-lee
+  name: { ko: 이현숙, en: Hyun Sook Lee }
+  photo: /members/hyunsook-lee.jpg
+  degree: phd
+  graduated: 2025
+  now: { ko: 목원대학교 빅데이터협업센터 팀장, en: Team Lead, Big Data Collaboration Center, Mokwon University }
+
+- id: jihoon-jeong
+  name: { ko: 정지훈, en: Jihoon Jeong }
+  photo: /members/jihoon-jeong.jpg
+  degree: phd
+  graduated: 2025
+  now: { ko: 코어인사이드, en: COREinside }
+
+- id: dongchul-hong
+  name: { ko: 홍동철, en: Dongchul Hong }
+  degree: phd
+  graduated: 2025
+  now: { ko: 브릭앤소프트, en: Brick&Soft }
+
+# ── 석사 (M.S.) ───────────────────────────────────────────────
+- id: minji-kim
+  name: { ko: 김민지, en: Minji Kim }
+  photo: /members/minji-kim.jpg
+  degree: ms
+  graduated: 2025
+
+- id: aesun-choi
+  name: { ko: 최애선, en: Ae Sun Choi }
+  photo: /members/aesun-choi.png
+  degree: ms
+  graduated: 2025
+
+- id: jiwon-jang
+  name: { ko: 장지원, en: Jiwon Jang }
+  degree: ms
+  graduated: 2025
+
+
+- id: hyundeuk-kim
+  name: { ko: 김현득, en: Hyun Deuk Kim }
+  degree: phd
+  graduated: 2024
+  now: { ko: 한국표준협회, en: Korea Standards Association }
+
+- id: jinyoung-won
+  name: { ko: 원진영, en: JinYoung Won }
+  degree: ms
+  graduated: 2024
+
+- id: hyunkyu-park
+  name: { ko: 박현규, en: Hyunkyu Park }
+  degree: ms
+  graduated: 2024
+  now: { ko: 신한라이프, en: Shinhan Life }
+
+- id: seungjin-jun
+  name: { ko: 전승진, en: Seungjin Jun }
+  degree: ms
+  graduated: 2025
+
+- id: Jihun-Chang
+  name: { ko: 장지훈, en: Jihun Chang}
+  degree: ms
+  graduated: 2025
+
+- id: jisung-byun
+  name: { ko: 변지성, en: Jisung Byun }
+  degree: ms
+  graduated: 2026

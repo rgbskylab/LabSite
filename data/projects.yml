@@ -1,0 +1,268 @@
+# ─────────────────────────────────────────────────────────────
+#  연구과제 — 새 과제는 아래 형식으로 항목 하나만 추가하세요.
+#     type:   government(정부지원) | industry(민간지원)
+#     year:   시작 연도 (숫자) — 이 값으로 최신순 자동 정렬
+#     title:  과제명
+#     agency: 발주/지원 기관
+#     program: 사업명 (선택)
+#     period: 수행 기간 (선택)
+#     amount: 연구비 (선택)
+#     role:   pi(연구책임자) | copi(공동연구원)
+#  (원본 사이트 Works 페이지에서 가져온 실제 데이터입니다)
+# ─────────────────────────────────────────────────────────────
+
+# ╔═ 복붙용 전체 예시 ═ 복사 → 각 줄 맨 앞 "# " 제거 → 수정 ═╗
+# - type: government               # government(정부지원) | industry(민간지원)
+#   year: 2026                     # 시작 연도, 숫자 — 최신순 자동 정렬
+#   title: "인공지능 기반 OOO 시스템 개발 및 검증"
+#   agency: "과학기술정보통신부"      # 지원/발주 기관
+#   program: "중견연구자 지원사업"    # 사업명 (선택)
+#   period: "2026.03 – 2029.02"    # 수행 기간 (선택)
+#   amount: "300,000,000원"        # 연구비 (선택, 현재 화면엔 숨김)
+#   role: pi                       # pi(연구책임자) | copi(공동연구원)
+# ╚════════════════════════════════════════════════════════════╝
+
+# ── 정부지원 과제 ─────────────────────────────────────────────
+- type: government
+  year: 2020
+  title: "한국형 3D 체형 데이터베이스 구축 및 3D 체형 생성모델을 통한 자가체형진단 및 근감소성 비만 예측 시스템 개발"
+  agency: "과학기술정보통신부"
+  program: "중견연구자 지원사업"
+  period: "2020.03 – 2023.02"
+  amount: "600,000,000원"
+  role: pi
+
+- type: government
+  year: 2020
+  title: "강화학습 기반 경력자 전문 능력 추천 및 블록체인 기술을 활용한 매칭정보 수정방지 시스템 개발"
+  agency: "교육부"
+  program: "기술개발과제"
+  period: "2020.03 – 2020.12"
+  amount: "38,900,000원"
+  role: pi
+
+- type: government
+  year: 2019
+  title: "빅데이터 및 인공지능기반 고학력 은퇴자를 위한 커리어 매칭 시스템 개발"
+  agency: "교육부"
+  program: "기술개발과제"
+  period: "2019.10 – 2020.02"
+  amount: "34,000,000원"
+  role: pi
+
+- type: government
+  year: 2018
+  title: "농산물 시장 물동량/가격 예측 및 물동량 최적분산을 위한 지능형 알고리즘 개발 및 검증"
+  agency: "농림축산식품부"
+  program: "농축산물안전 생산유통관리 기술개발사업"
+  period: "2018.09 – 2020.08"
+  amount: "533,334,000원"
+  role: pi
+
+- type: government
+  year: 2018
+  title: "빅 데이터 분석기반 커리어 매칭 지능정보 시스템 개발"
+  agency: "교육부"
+  program: "기술개발과제"
+  period: "2018.07 – 2019.01"
+  amount: "35,750,000원"
+  role: pi
+
+- type: government
+  year: 2017
+  title: "오픈소스 하드웨어를 이용한 3D 바디 측정 시스템 및 새로운 건강 지수 개발"
+  agency: "교육부"
+  program: "일반연구자지원사업(기본)"
+  period: "2017.06 – 2019.05"
+  amount: "100,000,000원"
+  role: pi
+
+- type: government
+  year: 2017
+  title: "3D 이미지 분석 시스템의 개발"
+  agency: "교육부"
+  program: "기술개발과제"
+  period: "2017.06 – 2018.01"
+  amount: "42,000,000원"
+  role: pi
+
+- type: government
+  year: 2016
+  title: "반응형 랜딩페이지 저작솔루션 ‘로켓브랜드’ 개발"
+  agency: "교육부"
+  program: "기술개발과제"
+  period: "2016.06 – 2016.12"
+  amount: "25,000,000원"
+  role: pi
+
+- type: government
+  year: 2016
+  title: "오픈소스 하드웨어 기반 독거노인 및 장애인 실내 환경 모니터링 시스템 개발 및 클라우드를 통한 지속적 자가 학습 딥러닝 시스템 구현"
+  agency: "국토교통부"
+  program: "국토교통기술촉진연구사업"
+  period: "2016.06 – 2018.05"
+  amount: "100,000,000원"
+  role: pi
+
+- type: government
+  year: 2015
+  title: "만성질환 발병 가능예측 모델 수립 및 만성질환 발병 위험그룹의 효과적 관리방안"
+  agency: "미래창조과학부"
+  program: "신진연구자(여성과학자)"
+  period: "2015.11 – 2016.10"
+  amount: "50,563,000원"
+  role: pi
+
+- type: government
+  year: 2015
+  title: "다중생체신호 측정센서를 이용한 스마트폰 자켓형 건강관리시스템 개발"
+  agency: "중소기업청"
+  program: "융복합기술개발사업"
+  period: "2015.10 – 2016.09"
+  amount: "119,800,000원"
+  role: pi
+
+- type: government
+  year: 2015
+  title: "시청환경 적응적 360도 VR콘텐츠 저작도구 및 일관제작 워크플로우 기술 개발"
+  agency: "교육부"
+  program: "기술개발과제"
+  period: "2015.06 – 2016.02"
+  amount: "37,280,000원"
+  role: pi
+
+- type: government
+  year: 2015
+  title: "빅데이터 기반 IoT/보안 로그 이벤트 분석을 통한 제품 품질 관리 및 보안관제 서비스 개발"
+  agency: "중소기업청"
+  program: "첫걸음 과제"
+  period: ""
+  amount: "118,575,000원"
+  role: copi
+
+- type: government
+  year: 2014
+  title: "IoT 로그/이벤트 처리를 위한 BigData ETL모델 연구회"
+  agency: "중소기업청"
+  program: "과제발굴연구회사업"
+  period: "2014.07 – 2014.11"
+  amount: "12,500,000원"
+  role: copi
+
+- type: government
+  year: 2014
+  title: "WebRTC를 이용한 영상통화 시스템 개발"
+  agency: "교육과학기술부"
+  program: "기술개발과제"
+  period: "2014.06 – 2015.02"
+  amount: "37,000,000원"
+  role: copi
+
+- type: government
+  year: 2014
+  title: "프로토타입을 활용한 모바일 앱 품질관리 테스트 프로그램 개발"
+  agency: "교육과학기술부"
+  program: "기술개발과제"
+  period: "2014.06 – 2015.02"
+  amount: "37,000,000원"
+  role: copi
+
+- type: government
+  year: 2013
+  title: "융합보안 빅데이터 특성 분석 및 처리 기법을 통한 스마트 보안 플랫폼 연구회"
+  agency: "중소기업청"
+  program: "과제발굴연구회사업"
+  period: "2013.08 – 2013.11"
+  amount: "17,500,000원"
+  role: pi
+
+- type: government
+  year: 2013
+  title: "빅데이터 기반 대용량 RFID-센서 융합 처리 및 고속분석 시스템 개발"
+  agency: "교육과학기술부"
+  program: "기술개발과제"
+  period: "2013.05 – 2014.02"
+  amount: "15,000,000원"
+  role: pi
+
+- type: government
+  year: 2012
+  title: "스마트 어플리케이션용 콘텐츠 저작도구 및 시범콘텐츠 개발"
+  agency: "교육과학기술부"
+  program: "기술개발과제"
+  period: "2012.06 – 2013.01"
+  amount: "25,000,000원"
+  role: pi
+
+- type: government
+  year: 2011
+  title: "스마트 TV를 위한 워킹 3D콘텐츠 개발"
+  agency: "교육과학기술부"
+  program: "기술개발과제"
+  period: "2011.03 – 2011.12"
+  amount: "50,000,000원"
+  role: pi
+
+- type: government
+  year: 2009
+  title: "영상촬영 카메라와 밸런스메터를 이용한 신체체형지수 및 신체균형지수추론 알고리즘 개발"
+  agency: "학술진흥재단"
+  program: "학문후속세대 박사후 국내연수"
+  period: "2009.09 – 2010.08"
+  amount: "25,000,000원"
+  role: pi
+
+- type: government
+  year: 2008
+  title: "헬스서비스 산업의 활성화를 위한 u-Healthcare 서비스 모델 및 시스템 개발"
+  agency: "학술진흥재단"
+  program: "학문후속세대 박사후 국외 포닥"
+  period: "2008.07 – 2009.06"
+  amount: "25,000,000원"
+  role: pi
+
+- type: government
+  year: 2006
+  title: "RFID 기술도입의 리스크분류 및 단계적 확산 전략"
+  agency: "한국과학재단"
+  program: "이공계 대학원 연구장학생"
+  period: "2006.06 – 2007.05"
+  amount: "18,000,000원"
+  role: pi
+
+# ── 민간지원 과제 ─────────────────────────────────────────────
+- type: industry
+  year: 2018
+  title: "2D/3D Deep Convolutional GAN 합성모델을 활용한 3D 체형 예측 모델 및 3D 인체 계측(3D anthropometry)에 관한 연구"
+  agency: "삼성전자(주)"
+  program: "삼성 미래기술 육성사업"
+  period: "2018.06 – 2020.11"
+  amount: "400,000,000원"
+  role: pi
+
+- type: industry
+  year: 2017
+  title: "쿠퍼-힐라리스 헬스&웰니스 아틀리에"
+  agency: "(주)힐라리스"
+  program: "산학연구개발"
+  period: "2017.06 – 2018.01"
+  amount: "33,000,000원"
+  role: pi
+
+- type: industry
+  year: 2016
+  title: "힐라리움 메디웰 서비스 빅데이터 분석과 딥러닝을 이용한 맞춤처방 구축"
+  agency: "(주)더힘스"
+  program: "산학연구개발"
+  period: "2016.06 – 2017.01"
+  amount: "22,000,000원"
+  role: pi
+
+- type: industry
+  year: 2015
+  title: "UHD 콘텐츠 개발"
+  agency: "(주)아바엔터테인먼트"
+  program: "산학연구개발"
+  period: "2015.06 – 2016.05"
+  amount: "4,000,000원"
+  role: pi

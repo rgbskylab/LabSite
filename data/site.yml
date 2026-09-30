@@ -1,0 +1,67 @@
+# ─────────────────────────────────────────────────────────────
+#  연구실 기본 정보 — 이 파일만 고치면 사이트 전반의 텍스트가 바뀝니다.
+#  ※ 이 파일 전체가 예시입니다. 아래 각 항목의 값만 실제 내용으로 바꾸세요.
+#     research(연구분야)는 항목을 늘리거나 줄일 수 있고,
+#     contact 의 github/scholar/twitter 는 없으면 "" 로 비워두면 됩니다.
+# ─────────────────────────────────────────────────────────────
+name:
+  ko: SKY LAB
+  en: SKY LAB
+# 헤더/타이틀에 들어가는 연구실 정식 명칭
+fullName:
+  ko: 융합시스템 연구실
+  en: Convergence System Laboratory
+# tagline / about 은 화면에는 표시하지 않습니다.
+# 검색 결과·카카오톡/슬랙 링크 미리보기에 쓰이는 설명문입니다.
+tagline:
+  ko: 산업시스템의 융합과 지능화를 연구합니다
+  en: Research on convergence and intelligence of industrial systems
+# 소속
+affiliation:
+  ko: 동국대학교 산업시스템공학과
+  en: Dept. of Industrial Systems Engineering, Dongguk University
+
+# 검색엔진·SNS 미리보기용 설명 (화면에는 안 나옴)
+about:
+  ko: >
+    융합시스템 연구실(SKY LAB)은 컴퓨터 비전과 딥러닝으로 사람을 이해하는 연구를 합니다.
+    2D 이미지에서 3D 인체를 복원하고, 영상으로 행동을 분석하며,
+    체형과 건강 상태의 변화를 예측하는 모델을 만듭니다.
+  en: >
+    The Convergence System Laboratory (SKY LAB) studies human understanding with
+    computer vision and deep learning: reconstructing 3D human bodies from 2D
+    images, analyzing behavior from video, and predicting changes in body shape
+    and health condition.
+
+# 연구 분야 (Research 페이지)
+#  description(설명 문단)은 선택 항목입니다. 지금은 제목만 노출합니다.
+#  model: 3D 뷰어를 붙이고 싶을 때만 씁니다.
+#         "body"  → 계측치 슬라이더로 변형되는 파라메트릭 인체 데모
+#         "/models/파일.glb|ply|obj|stl" → public/models/ 에 올린 실제 모델
+research:
+  - title:
+      ko: 컴퓨터 비전 기반 3D 인체 복원
+      en: 3D Human Reconstruction with Computer Vision
+    model: body
+    modelCaption:
+      ko: 계측치(키·가슴·허리·엉덩이둘레)로 인체 표면을 실시간 생성하는 데모입니다.
+      en: A live demo that generates a body surface from four measurements.
+  - title:
+      ko: 딥러닝 기반 행동 분석
+      en: Deep Learning-Based Behavior Analysis
+  - title:
+      ko: 체형·건강 변화 예측
+      en: Predicting Body Shape & Health Change
+
+# ※ 홈페이지의 "공지사항"과 소식은 이제 data/notices.yml 에서 관리합니다.
+
+# 연락처 / 오시는 길
+contact:
+  email: skyoum@dongguk.edu
+  address:
+    ko: 서울특별시 중구 필동로1길 30, 동국대학교 원흥관 E426
+    en: Wonheung Hall E426, Dongguk University, Jung-gu, Seoul, Korea
+  # 소셜/외부 링크 (없으면 비워두세요)
+  github: ""
+  scholar: ""
+  twitter: ""

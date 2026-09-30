@@ -1,0 +1,50 @@
+# ─────────────────────────────────────────────────────────────
+#  공지사항 — 새 공지는 아래 형식으로 항목 하나만 추가하세요.
+#  고정(pinned: true) 공지는 항상 맨 위, 나머지는 날짜 내림차순 정렬.
+#
+#  link 을 넣으면 상세 페이지 대신 그 외부 링크로 바로 이동합니다.
+#  body 는 여러 문단을 빈 줄로 구분해 작성하면 문단으로 나뉩니다.
+# ─────────────────────────────────────────────────────────────
+
+# ╔═ 복붙용 전체 예시 ═ 복사 → 각 줄 맨 앞 "# " 제거 → 수정 ═╗
+# - id: 2026-workshop              # 고유값 (URL 경로에 쓰임)
+#   date: 2026-09-01               # YYYY-MM-DD
+#   pinned: false                  # true 면 항상 맨 위 고정 (선택)
+#   title:
+#     ko: 추계 워크샵 안내
+#     en: Fall Workshop Announcement
+#   summary:                       # 목록에 보일 한 줄 요약 (선택)
+#     ko: 9월 연구실 워크샵을 개최합니다.
+#     en: We are holding a lab workshop in September.
+#   body:                          # 상세 본문 (선택). 빈 줄로 문단 구분
+#     ko: |
+#       첫 번째 문단입니다.
+#
+#       두 번째 문단입니다.
+#     en: |
+#       First paragraph.
+#
+#       Second paragraph.
+#   link: https://example.com      # (선택) 넣으면 상세 대신 외부링크로 이동
+# ╚════════════════════════════════════════════════════════════╝
+
+- id: 2026-recruit
+  date: 2026-07-01
+  pinned: true
+  title:
+    ko: 2026학년도 하반기 대학원생·학부연구생 모집
+    en: Fall 2026 Recruitment of Graduate & Undergraduate Researchers
+  summary:
+    ko: 컴퓨터 비전·딥러닝 기반 3D 인체 복원, 행동 분석, 예측 연구에 관심 있는 대학원생과 학부연구생을 모집합니다.
+    en: We are recruiting students interested in computer vision and deep learning for 3D human reconstruction, behavior analysis, and prediction.
+  body:
+    ko: |
+      우리 연구실은 2026학년도 하반기 함께 연구할 대학원생과 학부연구생을 모집합니다.
+
+      2D 이미지에서 3D 인체를 복원하고, 영상으로 행동을 분석하며, 체형·건강 변화를 예측하는 연구를 함께할 분을 기다립니다.
+      관심 있는 분은 지도교수 이메일로 CV와 함께 연락 주세요.
+    en: |
+      Our lab is recruiting graduate students and undergraduate researchers for Fall 2026.
+
+      We welcome those interested in 3D human reconstruction from images, video-based behavior analysis, and predictive modeling.
+      Please email the PI with your CV.

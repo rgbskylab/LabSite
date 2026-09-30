@@ -1,0 +1,398 @@
+% ─────────────────────────────────────────────────────────────
+%  논문 목록 — Google Scholar 등에서 "인용 > BibTeX"로 복사해
+%  이 파일에 붙여넣기만 하면 사이트에 자동 반영됩니다.
+%  (연도 내림차순으로 자동 정렬)
+%
+%  기본 BibTeX 필드 외에 아래 추가 필드를 지원합니다(선택):
+%     image      = {/pubs/파일명.png}   ← 티저 썸네일 (public/pubs/ 에 저장)
+%     venueshort = {NeurIPS}   ← 배지 약어 (없으면 학회명 괄호에서 자동 추출)
+%     url    = {논문/프로젝트 페이지 링크}
+%     pdf    = {PDF 링크}
+%     code   = {GitHub 등 코드 저장소}   (github = {...} 도 인식)
+%     arxiv  = {2401.01234}  또는 전체 URL   (eprint = {...} 도 인식)
+%     doi    = {DOI}
+%     slides = {슬라이드 링크}
+%     video  = {발표 영상 링크}
+%     award  = {Best Paper Award}   ← 있으면 배지로 강조됩니다
+%
+%  ※ 아래 목록은 SKY LAB(염세경 교수) 해외저널 논문입니다.
+%    DOI 는 Crossref 대조로 채워 넣었고, 아래 명령으로 언제든 다시 검증할 수 있습니다:
+%      node --experimental-strip-types scripts/check-publications.mts
+%      (FIX=1 을 붙이면 새로 찾은 DOI 를 자동으로 채워 넣습니다)
+% ─────────────────────────────────────────────────────────────
+
+% ╔═ 복붙용 전체 예시 ═ 복사 → 각 줄 맨 앞 "% " 제거 → 수정 ═╗
+% @article{hong2026example,          % @article(저널) | @inproceedings(학회) | @book(저서)
+%   title      = {Full Paper Title Goes Here},
+%   author     = {Hong, Gildong and Kim, Chulsoo and Youm, Sekyoung},  % " and " 로 저자 구분
+%   journal    = {Journal Name},      % 학회 논문이면 journal 대신 booktitle = {...}
+%   venueshort = {ShortName},         % 배지 약어 (선택, 없으면 자동 추출)
+%   volume     = {15}, number = {3}, pages = {100--110}, year = {2026},
+%   doi        = {10.xxxx/xxxxx},     % (선택) 있으면 자동 링크
+%   url        = {https://...},       % pdf / arxiv / code / slides / video 도 지원 (선택)
+% }
+% ╚════════════════════════════════════════════════════════════╝
+
+% ── 아래 5편은 Crossref/OpenAlex 대조로 확인된 국제저널 논문인데
+%    목록에서 빠져 있어 추가했습니다 (scripts/check-publications.mts 로 재확인 가능)
+@article{choi2024process,
+  title      = {Process Derivation Methodology for Reconfigurable Smart Factory},
+  author     = {Choi, Seunghyun and Youm, Sekyoung and Kang, Yong-Shin},
+  journal    = {International Journal of Precision Engineering and Manufacturing},
+  venueshort = {IJPEM},
+  volume  = {25}, number = {3}, pages = {497--508}, year = {2024},
+  doi     = {10.1007/s12541-023-00820-9}
+}
+
+@article{park2023casting,
+  title      = {Establish a Machine Learning Based Model for Optimal Casting Conditions Management of Small and Medium Sized Die Casting Manufacturers},
+  author     = {Park, Sangwoo and Youm, Sekyoung},
+  journal    = {Scientific Reports},
+  venueshort = {Sci. Rep.},
+  volume  = {13}, number = {17163}, year = {2023},
+  doi     = {10.1038/s41598-023-44449-0}
+}
+
+@article{jeong2023lifelong,
+  title      = {Future Strategy of Lifelong Education through Systems Analysis in Republic of Korea: Long-Term Research Conducted Based on Two Surveys in 2016 and 2023},
+  author     = {Jeong, Jihoon and Hong, Dongchul and Chang, Joonho and Youm, Sekyoung},
+  journal    = {Systems},
+  volume  = {11}, number = {557}, year = {2023},
+  doi     = {10.3390/systems11120557}
+}
+
+@article{choi2022mandibular,
+  title      = {Artificial Intelligence in Positioning between Mandibular Third Molar and Inferior Alveolar Nerve on Panoramic Radiography},
+  author     = {Choi, Eunhye and Lee, Soohong and Jeong, Eunjae and Shin, Seokwon and Park, Hyunwoo and Youm, Sekyoung and Son, Youngdoo and Pang, KangMi},
+  journal    = {Scientific Reports},
+  venueshort = {Sci. Rep.},
+  volume  = {12}, number = {2456}, year = {2022},
+  doi     = {10.1038/s41598-022-06483-2}
+}
+
+@article{jeong2022advertising,
+  title      = {Optimization of the Decision-Making System for Advertising Strategies of Small Enterprises — Focusing on Company A},
+  author     = {Jeong, Jihoon and Hong, Dongchul and Youm, Sekyoung},
+  journal    = {Systems},
+  volume  = {10}, number = {116}, year = {2022},
+  doi     = {10.3390/systems10040116}
+}
+
+@article{kim2025imagetoimage,
+  title      = {Development of an Image-to-Image Methodology for Customized Prediction of Body Shape Changes},
+  author     = {Kim, Minji and Youm, Sekyoung},
+  journal    = {Human-centric Computing and Information Sciences},
+  venueshort = {HCIS},
+  volume  = {15}, number = {61}, year = {2025},
+  doi     = {10.22967/HCIS.2025.15.061}
+}
+
+@article{jang2025posedriven,
+  title   = {Pose-Driven Body Shape Prediction Algorithm Based on the Conditional GAN},
+  author  = {Jang, Jiwon and Byeon, Jiseong and Jung, Daewon and Chang, Jihun and Youm, Sekyoung},
+  journal = {Applied Sciences},
+  volume  = {15}, number = {7643}, year = {2025},
+  doi     = {10.3390/app15147643}
+}
+
+@article{kim2025liposuction,
+  title   = {Predicting Post-Liposuction Body Shape Using RGB Image-to-Image Translation},
+  author  = {Kim, Minji and Byeon, Jiseong and Chang, Jihun and Youm, Sekyoung},
+  journal = {Applied Sciences},
+  volume  = {15}, number = {4787}, year = {2025},
+  doi     = {10.3390/app15094787}
+}
+
+@article{lee2025digitaltherapeutic,
+  title      = {Developing a Digital Therapeutic for Obesity Management through 3D Human Body Reconstruction},
+  author     = {Lee, Hyunsook and Youm, Sekyoung},
+  journal    = {Expert Systems},
+  venueshort = {Expert Syst.},
+  number  = {e13678}, year = {2025},
+  doi     = {10.1111/exsy.13678}
+}
+
+@article{so2024simulation,
+  title   = {A Human Body Simulation Using Semantic Segmentation and Image-Based Reconstruction Techniques for Personalized Healthcare},
+  author  = {So, Junyong and Youm, Sekyoung and Kim, Sojung},
+  journal = {Applied Sciences},
+  volume  = {14}, number = {7107}, year = {2024},
+  doi     = {10.3390/app14167107}
+}
+
+@article{lee2024noncontact,
+  title   = {Development of a Non-Contact Sensor System for Converting 2D Images into 3D Body Data: A Deep Learning Approach to Monitor Obesity and Body Shape in Individuals in Their 20s and 30s},
+  author  = {Lee, Ji-Yong and Kwon, Kihyeon and Kim, Changgyun and Youm, Sekyoung},
+  journal = {Sensors},
+  volume  = {24}, number = {270}, year = {2024},
+  doi     = {10.3390/s24010270}
+}
+
+@article{jeon2023obesity,
+  title      = {Machine Learning-Based Obesity Classification Considering 3D Body Scanner Measurements},
+  author     = {Jeon, Seungjin and Kim, Minji and Yoon, Jiwon and Lee, Sangyong and Youm, Sekyoung},
+  journal    = {Scientific Reports},
+  venueshort = {Sci. Rep.},
+  volume  = {13}, number = {3299}, year = {2023},
+  doi     = {10.1038/s41598-023-30434-0}
+}
+
+@article{kim2022intrinsic,
+  title      = {Development of an Intrinsic Health Risk Prediction Model for Camera-Based Monitoring of Older Adults Living Alone},
+  author     = {Kim, Minji and Hong, Song-iee and Youm, Sekyoung},
+  journal    = {Scientific Reports},
+  venueshort = {Sci. Rep.},
+  volume  = {12}, number = {18855}, year = {2022},
+  doi     = {10.1038/s41598-022-23663-2}
+}
+
+@article{kim2022illness,
+  title   = {A Study on Customized Prediction of Daily Illness Risk Using Medical and Meteorological Data},
+  author  = {Kim, Minji and Jang, Jiwon and Jeon, Seungjin and Youm, Sekyoung},
+  journal = {Applied Sciences},
+  volume  = {12}, number = {6060}, year = {2022},
+  doi     = {10.3390/app12126060}
+}
+
+@article{kim2022obesitydiagnosis,
+  title   = {Development of an Obesity Information Diagnosis Model Reflecting Body Type Information Using 3D Body Information Values},
+  author  = {Kim, Changgyun and Youm, Sekyoung},
+  journal = {Sensors},
+  volume  = {22}, number = {7808}, year = {2022},
+  doi     = {10.3390/s22207808}
+}
+
+@article{lu2021parametric,
+  title      = {Parametric Shape Estimation of Human Body Under Wide Clothing},
+  author     = {Lu, Yucheng and Cha, Jin-Hyuck and Youm, Se-Kyoung and Jung, Seung-Won},
+  journal    = {IEEE Transactions on Multimedia},
+  venueshort = {IEEE TMM},
+  volume  = {23}, pages = {3657}, year = {2021},
+  doi     = {10.1109/TMM.2020.3029941}
+}
+
+@article{choi2021anomaly,
+  title      = {Human Behavioral Pattern Analysis-Based Anomaly Detection System in Residential Space},
+  author     = {Choi, Seunghyun and Kim, Changgyun and Kang, Yong-Shin and Youm, Sekyoung},
+  journal    = {The Journal of Supercomputing},
+  venueshort = {J. Supercomput.},
+  volume  = {77}, pages = {9248--9265}, year = {2021},
+  doi     = {10.1007/s11227-021-03641-7}
+}
+
+@article{youm2021medication,
+  title      = {Development of a Wearable Camera and AI Algorithm for Medication Behavior Recognition},
+  author     = {Youm, Sekyoung},
+  journal    = {Sensors},
+  year    = {2021},
+  doi     = {10.3390/s21113594}
+}
+
+@article{cha2020bigdata,
+  title   = {Design and Implementation of a Big Data Evaluator Recommendation System Using Deep Learning Methodology},
+  author  = {Cha, S. and Yi, M. and Youm, S.},
+  journal = {Applied Sciences},
+  volume  = {10}, number = {22}, year = {2020},
+  doi     = {10.3390/app10228000}
+}
+
+@article{kim2020mandibular,
+  title   = {Expert System for Mandibular Condyle Detection and Osteoarthritis Classification in Panoramic Imaging Using R-CNN and CNN},
+  author  = {Kim, D. and Choi, E. and Jeong, H. and Chang, J. and Youm, S.},
+  journal = {Applied Sciences},
+  volume  = {10}, number = {21}, year = {2020},
+  doi     = {10.3390/app10217464}
+}
+
+@article{kim2020tomato,
+  title      = {Auxiliary System for Prediction of Trade Volume Using Tomato Big Data and Data Mining Methodology},
+  author     = {Kim, C. and Lim, C. and Youm, S.},
+  journal    = {JP Journal of Heat and Mass Transfer},
+  venueshort = {JP J. Heat Mass Transf.},
+  note    = {Special Issue}, year = {2020},
+  doi     = {10.17654/hmsi20019}
+}
+
+@article{kim2020tooth,
+  title   = {Automatic Tooth Detection and Numbering Using a Combination of a CNN and Heuristic Algorithm},
+  author  = {Kim, C. and Kim, D. and Jeong, H. and Yoon, S. and Youm, S.},
+  journal = {Applied Sciences},
+  volume  = {10}, number = {16}, year = {2020},
+  doi     = {10.3390/app10165624}
+}
+
+@article{kim2020obesity,
+  title   = {Development of a Web Application Based on Human Body Obesity Index and Self-Obesity Diagnosis Model Using the Data Mining Methodology},
+  author  = {Kim, C. and Youm, S.},
+  journal = {Sustainability},
+  volume  = {12}, number = {9}, year = {2020},
+  doi     = {10.3390/su12093702}
+}
+
+@article{park2019smartfactory,
+  title      = {Establishment of an IoT-Based Smart Factory and Data Analysis Model for the Quality Management of SMEs Die-Casting Companies in Korea},
+  author     = {Park, S. and Kim, C. and Youm, S.},
+  journal    = {International Journal of Distributed Sensor Networks},
+  venueshort = {IJDSN},
+  volume  = {15}, number = {10}, year = {2019},
+  doi     = {10.1177/1550147719879378}
+}
+
+@article{choi2019fall,
+  title      = {A Study on a Fall Detection Monitoring System for Falling Elderly Using Open Source Hardware},
+  author     = {Choi, S. and Youm, S.},
+  journal    = {Multimedia Tools and Applications},
+  venueshort = {MTAP},
+  volume  = {78}, number = {20}, year = {2019},
+  doi     = {10.1007/s11042-017-5452-9}
+}
+
+@article{choi2019anomaly,
+  title   = {Development of Scalable On-Line Anomaly Detection System for Autonomous and Adaptive Manufacturing Processes},
+  author  = {Choi, S. and Youm, S. and Kang, Y.},
+  journal = {Applied Sciences},
+  volume  = {9}, number = {21}, year = {2019},
+  doi     = {10.3390/app9214502}
+}
+
+@article{kim2019chronic,
+  title   = {Chronic Disease Prediction Using Character-Recurrent Neural Network in the Presence of Missing Information},
+  author  = {Kim, C. and Son, Y. and Youm, S.},
+  journal = {Applied Sciences},
+  volume  = {9}, number = {10}, year = {2019},
+  doi     = {10.3390/app9102170}
+}
+
+@article{youm2019emergency,
+  title      = {Development of a Methodology to Predict and Monitor Emergency Situations of the Elderly Based on Object Detection},
+  author     = {Youm, S. and Kim, C. and Choi, S. and Kang, Y.},
+  journal    = {Multimedia Tools and Applications},
+  venueshort = {MTAP},
+  volume  = {78}, number = {5}, year = {2019},
+  doi     = {10.1007/s11042-018-6660-7}
+}
+
+@article{yang2019demand,
+  title   = {Demand Forecasting Model Development Through Big Data Analysis},
+  author  = {Yang, S. and Joo, H. and Youm, S.},
+  journal = {Electronic Commerce Research},
+  year    = {2019},
+  doi     = {10.1007/s10660-019-09337-8}
+}
+
+@article{kang2017transit,
+  title      = {Multimedia Application to an Extended Public Transportation Network in South Korea: Optimal Path Search in a Multimodal Transit Network},
+  author     = {Kang, Y. and Youm, S.},
+  journal    = {Multimedia Tools and Applications},
+  venueshort = {MTAP},
+  volume  = {76}, number = {19}, year = {2017},
+  doi     = {10.1007/s11042-016-4015-9}
+}
+
+@article{youm2017healthcarepc,
+  title      = {Development of Healthcare PC and Multimedia Software for Improvement of Health Status and Exercise Habits},
+  author     = {Youm, S. and Liu, S.},
+  journal    = {Multimedia Tools and Applications},
+  venueshort = {MTAP},
+  volume  = {76}, number = {17}, year = {2017},
+  doi     = {10.1007/s11042-015-2998-2}
+}
+
+@article{kang2016mongodb,
+  title   = {Performance Prediction of a MongoDB-Based Traceability System in Smart Factory Supply Chains},
+  author  = {Kang, Y. and Park, I. and Youm, S.},
+  journal = {Sensors},
+  year    = {2016},
+  doi     = {10.3390/s16122126}
+}
+
+@article{bravo2016environment,
+  title      = {Environment and Its Influence on Health and Demographics in South Korea},
+  author     = {Bravo, R. and Kim, Y. and Farooq, U. and Kim, T. and Youm, S. and Park, S.},
+  journal    = {International Journal of Environmental Research and Public Health},
+  venueshort = {IJERPH},
+  volume  = {13}, number = {2}, year = {2016},
+  doi     = {10.3390/ijerph13020183}
+}
+
+@article{park2015inear,
+  title   = {Wearable Sensing of In-Ear Pressure for Heart Rate Monitoring with a Piezoelectric Sensor},
+  author  = {Park, J. and Jang, D. and Park, J. and Youm, S.},
+  journal = {Sensors},
+  volume  = {15}, number = {9}, year = {2015},
+  doi     = {10.3390/s150923402}
+}
+
+@article{youm2015nscreen,
+  title   = {The Development and User Satisfaction Evaluation of Internet-Based N-Screen Healthcare Walking Content to Increase Continuous Usage Motivation},
+  author  = {Youm, S.},
+  journal = {Telemedicine and e-Health},
+  volume  = {21}, number = {8}, year = {2015},
+  doi     = {10.1089/tmj.2014.0135}
+}
+
+@article{hasan2015locomotion,
+  title      = {A Novel Mechatronic Approach for Functional Recovery of Human Locomotion},
+  author     = {Hasan, M. and Park, J. and Youm, S. and Park, S.},
+  journal    = {Annals of Medical and Biomedical Sciences},
+  venueshort = {Ann. Med. Biomed. Sci.},
+  volume  = {1}, number = {2}, year = {2015}
+}
+
+@article{park2015balance,
+  title      = {Development of a Balance Analysis System for Early Diagnosis of Parkinson's Disease},
+  author     = {Park, J. and Youm, S. and Jeon, Y. and Park, S.},
+  journal    = {International Journal of Industrial Ergonomics},
+  venueshort = {IJIE},
+  volume  = {48}, year = {2015},
+  doi     = {10.1016/j.ergon.2015.05.005}
+}
+
+@article{bravo2015uhealthcare,
+  title   = {U-Healthcare Center Service in Busan City, South Korea: An Empirical Analysis and the Results of 1 Year of Service},
+  author  = {Bravo, R. and Youm, S. and Park, S.},
+  journal = {Telemedicine and e-Health},
+  volume  = {21}, number = {10}, year = {2015},
+  doi     = {10.1089/tmj.2014.0216}
+}
+
+@article{youm2015awareness,
+  title   = {How the Awareness of u-Healthcare Service and Health Conditions Affect Healthy Lifestyle: An Empirical Analysis Based on a u-Healthcare Service Experience},
+  author  = {Youm, S. and Park, S.},
+  journal = {Telemedicine and e-Health},
+  volume  = {21}, number = {4}, year = {2015},
+  doi     = {10.1089/tmj.2014.0092}
+}
+
+@article{youm2015rfidfitness,
+  title   = {RFID-Based Automatic Scoring System for Physical Fitness Testing},
+  author  = {Youm, S. and Park, S. and Zhu, W.},
+  journal = {IEEE Systems Journal},
+  volume  = {9}, number = {2}, year = {2015},
+  doi     = {10.1109/jsyst.2013.2279570}
+}
+
+@article{youm2014mobile,
+  title   = {Development and Evaluation of a Mobile Application for Personal Lifestyle Check-Up and Improvement},
+  author  = {Youm, Y. and Park, S.},
+  journal = {Telemedicine and e-Health},
+  volume  = {20}, number = {11}, year = {2014},
+  doi     = {10.1089/tmj.2013.0335}
+}
+
+@article{kang2013co2,
+  title      = {RFID-Based CO2 Emissions Allocation in the Third-Party Logistics Industry},
+  author     = {Kang, Y. and Youm, S. and Rhee, J. and Lee, Y.},
+  journal    = {Journal of Food, Agriculture and Environment},
+  venueshort = {JFAE},
+  volume  = {11}, number = {3-4}, year = {2013}
+}
+
+@article{youm2011remote,
+  title      = {Development of Remote Healthcare System for Measuring and Promoting Healthy Lifestyle},
+  author     = {Youm, S. and Lee, G. and Park, S. and Zhu, W.},
+  journal    = {Expert Systems with Applications},
+  venueshort = {ESWA},
+  volume  = {38}, year = {2011},
+  doi     = {10.1016/j.eswa.2010.08.075}
+}
