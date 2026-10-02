@@ -12,9 +12,13 @@ export function proxy(request: NextRequest) {
   );
   if (hasLocale) return;
 
-  // 브라우저 선호 언어로 기본값 결정 (한국어면 ko, 그 외 en)
-  const accept = request.headers.get("accept-language") || "";
-  const preferred = accept.toLowerCase().startsWith("ko") ? "ko" : DEFAULT_LOCALE;
+  // 브라우저 선호 언어로 기본값 결정 (한국어면 ko, 그 외 en, 헤더가 없으면 기본 언어)
+  const accept = request.headers.get("accept-language");
+  const preferred = !accept
+    ? DEFAULT_LOCALE
+    : accept.toLowerCase().startsWith("ko")
+      ? "ko"
+      : "en";
 
   const url = request.nextUrl.clone();
   url.pathname = `/${preferred}${pathname === "/" ? "" : pathname}`;
