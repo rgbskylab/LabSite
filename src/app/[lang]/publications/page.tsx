@@ -25,17 +25,17 @@ export default async function PublicationsPage({ params }: { params: Promise<{ l
   return (
     <div>
       <PageHeader title={t.title} />
-      <div className="mx-auto max-w-6xl px-6 pb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 pb-16">
         {years.map((year) => (
           <section key={year} className="mb-12 last:mb-0">
             <h2 className="text-sm font-bold uppercase tracking-widest tabular-nums">
               {year || "—"}
             </h2>
-            <ul className="mt-4">
+            <ul className="mt-4 border-b border-border">
               {pubs
                 .filter((p) => p.year === year)
                 .map((p) => (
-                  <PublicationItem key={p.key} pub={p} lang={l} />
+                  <PublicationItem key={p.key} pub={p} lang={l} showYear={false} />
                 ))}
             </ul>
           </section>

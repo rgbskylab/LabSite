@@ -133,12 +133,25 @@ export interface ResearchArea {
   modelCaption?: Localized;
 }
 
+/** 홈 영상. youtube 또는 src 중 하나가 있으면 재생 버튼이 나타납니다. */
+export interface HomeVideo {
+  youtube?: string; // YouTube 주소 또는 영상 ID
+  src?: string; // public/ 의 영상 파일 (/videos/intro.mp4)
+  poster?: string; // 썸네일 사진 (없으면 인체 단면 그림)
+  title?: Localized;
+}
+
 export interface SiteConfig {
   name: Localized;
   fullName: Localized;
   tagline: Localized;
   affiliation: Localized;
   about: Localized;
+  /** 홈 큰 제목 (줄바꿈은 넓은 화면에서만 적용) */
+  headline?: Localized;
+  /** 홈 큰 제목 아래 소개 문장 */
+  intro?: Localized;
+  video?: HomeVideo;
   research: ResearchArea[];
   news: NewsItem[];
   contact: {

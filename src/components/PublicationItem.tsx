@@ -14,22 +14,39 @@ function arxivUrl(v: string): string {
 }
 
 /**
- * 연구실 홈페이지 표준 논문 항목:
- *   [티저 썸네일] 제목 / 저자(연구실 저자 강조) / 게재처 · 연도 [링크]
+ * 논문 항목:
+ *   연도 · 게재처
+ *   제목 (세리프)
+ *   저자 (연구실 저자 강조)
+ *   PDF ↗  DOI ↗  BibTeX 복사
+ * showYear=false 면 연도를 뺍니다 (연도별로 묶인 논문 페이지용).
  */
-export function PublicationItem({ pub, lang }: { pub: Publication; lang: Lang }) {
+export function PublicationItem({
+  pub,
+  lang,
+  showYear = true,
+  className = "",
+}: {
+  pub: Publication;
+  lang: Lang;
+  showYear?: boolean;
+  className?: string;
+}) {
   const t = getDict(lang).pubs;
   const primary =
     pub.url ||
     pub.pdf ||
     (pub.arxiv ? arxivUrl(pub.arxiv) : undefined) ||
     (pub.doi ? `https://doi.org/${pub.doi}` : undefined);
+  const meta = [showYear && pub.year > 0 ? String(pub.year) : "", pub.venue, pub.award ?? ""]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <li
-      className={`py-4 ${
-        pub.image ? "grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-[168px_1fr]" : ""
-      }`}
+      className={`border-t border-border py-6 lg:py-7 ${
+        pub.image ? "grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-[168px_1fr]" : ""
+      } ${className}`}
     >
       {pub.image && (
         <a href={primary} target={primary ? "_blank" : undefined} rel="noreferrer">
@@ -37,16 +54,17 @@ export function PublicationItem({ pub, lang }: { pub: Publication; lang: Lang })
           <img
             src={pub.image}
             alt=""
-            className="aspect-[4/3] w-full border border-border object-cover"
+            className="aspect-[4/3] w-full rounded-2xl border border-border object-cover"
             loading="lazy"
           />
         </a>
       )}
 
-      <div className="min-w-0">
-        <h3 className="font-medium leading-snug">
+      <div className="flex min-w-0 flex-col gap-2">
+        {meta && <span className="text-[13px] text-muted">{meta}</span>}
+        <h3 className="font-serif text-xl leading-[1.4] font-normal lg:text-[23px]">
           {primary ? (
-            <a href={primary} target="_blank" rel="noreferrer" className="hover:underline underline-offset-2">
+            <a href={primary} target="_blank" rel="noreferrer" className="hover:text-accent">
               {pub.title}
             </a>
           ) : (
@@ -54,21 +72,16 @@ export function PublicationItem({ pub, lang }: { pub: Publication; lang: Lang })
           )}
         </h3>
 
-        <p className="mt-1 text-sm leading-relaxed text-muted">
+        <p className="text-[13px] leading-relaxed text-muted lg:text-sm">
           {pub.authors.map((a, i) => (
             <span key={i}>
-              <span className={isLabAuthor(a) ? "font-medium text-foreground" : ""}>{a}</span>
+              <span className={isLabAuthor(a) ? "font-semibold text-foreground" : ""}>{a}</span>
               {i < pub.authors.length - 1 ? ", " : ""}
             </span>
           ))}
         </p>
 
-        <p className="mt-1 flex flex-wrap items-baseline gap-x-2 text-sm text-muted">
-          <span>
-            {pub.venue}
-            {pub.year > 0 && ` ${pub.year}`}
-            {pub.award && ` · ${pub.award}`}
-          </span>
+        <p className="flex flex-wrap items-baseline gap-x-[18px] gap-y-1 text-sm">
           {pub.pdf && <Tag href={pub.pdf} label={t.pdf} />}
           {pub.arxiv && <Tag href={arxivUrl(pub.arxiv)} label={t.arxiv} />}
           {pub.url && <Tag href={pub.url} label={t.link} />}
@@ -83,11 +96,10 @@ export function PublicationItem({ pub, lang }: { pub: Publication; lang: Lang })
   );
 }
 
-/** 연구실 홈페이지 관례인 [PDF] [Code] 형태의 링크 */
 function Tag({ href, label }: { href: string; label: string }) {
   return (
-    <a href={href} target="_blank" rel="noreferrer" className="hover:text-foreground">
-      [{label}]
+    <a href={href} target="_blank" rel="noreferrer" className="font-semibold text-accent hover:underline underline-offset-4">
+      {label} ↗
     </a>
   );
 }

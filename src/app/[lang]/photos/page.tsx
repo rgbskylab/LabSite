@@ -21,7 +21,7 @@ export default async function PhotosPage({ params }: { params: Promise<{ lang: s
   return (
     <div>
       <PageHeader title={t.title} />
-      <div className="mx-auto max-w-6xl px-6 pb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 pb-16">
         {photos.length === 0 ? (
           <p className="text-muted">{t.empty}</p>
         ) : (

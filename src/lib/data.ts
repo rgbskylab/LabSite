@@ -96,12 +96,23 @@ export function getSite(): SiteConfig {
   const research = (raw.research as unknown[] | undefined) ?? [];
   const news = (raw.news as unknown[] | undefined) ?? [];
   const contact = (raw.contact as Record<string, unknown>) ?? {};
+  const video = raw.video as Record<string, unknown> | undefined;
   return {
     name: loc(raw.name),
     fullName: loc(raw.fullName),
     tagline: loc(raw.tagline),
     affiliation: loc(raw.affiliation),
     about: loc(raw.about),
+    headline: raw.headline ? loc(raw.headline) : undefined,
+    intro: raw.intro ? loc(raw.intro) : undefined,
+    video: video
+      ? {
+          youtube: (video.youtube as string)?.trim() || undefined,
+          src: asset(video.src),
+          poster: asset(video.poster),
+          title: video.title ? loc(video.title) : undefined,
+        }
+      : undefined,
     research: research.map((r) => {
       const o = r as Record<string, unknown>;
       return {

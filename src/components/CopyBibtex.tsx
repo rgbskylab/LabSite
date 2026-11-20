@@ -24,8 +24,8 @@ export function CopyBibtex({
   };
 
   return (
-    <button onClick={copy} className="hover:text-foreground">
-      [{copied ? copiedLabel : label}]
+    <button type="button" onClick={copy} className="cursor-pointer font-semibold text-accent hover:underline underline-offset-4">
+      <span aria-live="polite">{copied ? copiedLabel : label}</span>
     </button>
   );
 }

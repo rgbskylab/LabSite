@@ -31,7 +31,7 @@ export default async function MembersPage({ params }: { params: Promise<{ lang: 
   return (
     <div>
       <PageHeader title={t.title} />
-      <div className="mx-auto max-w-6xl px-6 pb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 pb-16">
         {groups.map((g) => (
           <section key={g.role} className="mb-14">
             <h2 className="text-sm font-bold uppercase tracking-widest">

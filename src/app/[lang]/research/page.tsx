@@ -25,9 +25,9 @@ export default async function ResearchPage({ params }: { params: Promise<{ lang:
   return (
     <div>
       <PageHeader title={t.nav.research} />
-      <div className="mx-auto max-w-6xl px-6 pb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 pb-16">
         {site.research.map((r, i) => (
-          <section key={i} className="mb-16 last:mb-0">
+          <section key={i} id={`area-${i + 1}`} className="mb-16 scroll-mt-24 last:mb-0">
             <h2 className="text-sm font-bold uppercase tracking-widest text-muted tabular-nums">
               {String(i + 1).padStart(2, "0")}
             </h2>
