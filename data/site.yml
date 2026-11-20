@@ -54,7 +54,7 @@ intro:
 video:
   youtube: ""
   src: "/videos/skylab-video.mp4"
-  poster: ""
+  poster: "/videos/skylab-video-poster.jpg"
   title:
     ko: 연구실 소개 영상
     en: Lab introduction video
