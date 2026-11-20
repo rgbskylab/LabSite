@@ -3,6 +3,9 @@ import { getNotices } from "@/lib/data";
 import { absUrl } from "@/lib/seo";
 import { LANGS } from "@/lib/types";
 
+// 정적 export(output: "export")에서는 빌드 때 한 번 생성해 파일로 저장하도록 명시해야 함
+export const dynamic = "force-static";
+
 /** 검색엔진용 사이트맵 — 페이지가 늘면 PATHS 에 경로만 추가하세요. */
 const PATHS = [
   { path: "", priority: 1 },
