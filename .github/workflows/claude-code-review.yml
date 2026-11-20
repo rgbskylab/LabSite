@@ -1,6 +1,8 @@
-# PR이 열리거나 새 커밋이 올라오면 Claude가 리뷰하고 PR에 댓글을 남김
-# 인증: Anthropic Workload identity federation (API 키 없음)
-name: Claude Code Review
+# PR이 열리거나 새 커밋이 올라오면 Claude가 diff를 리뷰하고 PR에 댓글을 남김
+# Claude Code(claude-code-action) 대신 Claude API(Messages API)를 직접 호출하므로
+# 사용량이 API 크레딧으로 청구됨
+# 인증: Anthropic Workload Identity Federation (API 키 없음)
+name: Claude PR Review
 
 on:
   pull_request:
@@ -18,19 +20,42 @@ concurrency:
 
 jobs:
   review:
+    # 포크에서 온 PR(OIDC 토큰이 발급되지 않음)과 초안 PR은 건너뜀
+    if: github.event.pull_request.head.repo.full_name == github.repository && !github.event.pull_request.draft
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ANTHROPIC_FEDERATION_RULE_ID: fdrl_01YTutQs9yWUGNvyoK8865q3
+      ANTHROPIC_ORGANIZATION_ID: 1c15fde5-7231-42c8-a825-3fa57f640a3a
+      ANTHROPIC_SERVICE_ACCOUNT_ID: svac_01XvYrifmyC2AyYXPtik7pwT
+      ANTHROPIC_WORKSPACE_ID: wrkspc_01Ak5VYEdAaBCbNsFy9n2xii
+      ANTHROPIC_IDENTITY_TOKEN_FILE: /tmp/anthropic-oidc/jwt
     steps:
       - uses: actions/checkout@v6
         with:
-          fetch-depth: 1
+          sparse-checkout: .github/scripts
+          persist-credentials: false
 
-      - uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_federation_rule_id: fdrl_01YTutQs9yWUGNvyoK8865q3
-          anthropic_organization_id: 1c15fde5-7231-42c8-a825-3fa57f640a3a
-          anthropic_service_account_id: svac_01XvYrifmyC2AyYXPtik7pwT
-          anthropic_workspace_id: wrkspc_01Ak5VYEdAaBCbNsFy9n2xii
-          plugin_marketplaces: "https://github.com/anthropics/claude-plugins-official.git"
-          plugins: "code-review@claude-plugins-official"
-          prompt: "/code-review:code-review --comment ${{ github.repository }}/pull/${{ github.event.pull_request.number }}"
-          claude_args: '--allowedTools "mcp__github_inline_comment__create_inline_comment"'
+      - name: Install Anthropic SDK
+        run: |
+          node --version
+          mkdir -p "$RUNNER_TEMP/claude-review"
+          cp .github/scripts/claude-pr-review.mjs "$RUNNER_TEMP/claude-review/"
+          cd "$RUNNER_TEMP/claude-review"
+          echo '{"private": true}' > package.json
+          npm install --no-audit --no-fund --ignore-scripts @anthropic-ai/sdk@1.4.0
+
+      # GitHub OIDC 토큰은 5분 정도 유효하므로 리뷰 직전에 받음
+      - name: Fetch GitHub OIDC token
+        run: |
+          set -o pipefail
+          umask 077
+          mkdir -p "$(dirname "$ANTHROPIC_IDENTITY_TOKEN_FILE")"
+          curl -sSf -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=https://api.anthropic.com" \
+            | jq -er .value > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
+
+      - name: Review with Claude
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node "$RUNNER_TEMP/claude-review/claude-pr-review.mjs"
