@@ -118,11 +118,14 @@ Google Scholar 등에서 논문의 **BibTeX**를 복사해 `data/publications.bi
 
 ```bash
 pnpm install      # 최초 1회
-pnpm dev          # http://localhost:3000 에서 미리보기
-pnpm build        # 배포용 빌드
+pnpm dev          # http://localhost:3000/LabSite/ko/ 에서 미리보기
+pnpm build        # 배포용 빌드 (out/ 폴더에 정적 파일 생성)
 ```
 
-**배포(Vercel):** 이 저장소를 GitHub에 올리고 Vercel에 연결하면 `main` 브랜치에 푸시할 때마다 자동 배포됩니다. 도메인(`skylab.quv.kr`)은 Vercel 프로젝트의 Domains 설정에서 연결하세요. `data/` 파일을 GitHub 웹에서 바로 편집해도 자동 재배포됩니다.
+**배포(GitHub Pages):** `main` 브랜치에 푸시(머지)될 때마다 GitHub Actions(`.github/workflows/deploy.yml`)가 빌드해서 **https://rgbskylab.github.io/LabSite/** 에 자동 배포합니다. `data/` 파일을 GitHub 웹에서 바로 편집해 `main`에 커밋해도 자동 재배포됩니다.
+
+- 사이트가 `/LabSite/` 하위 경로에서 열리기 때문에 `next.config.ts`에 `basePath: "/LabSite"`가 설정되어 있습니다. 데이터 파일의 사진·이미지 경로는 지금처럼 `/members/파일명`으로 적으면 `/LabSite`가 자동으로 붙습니다.
+- 도메인을 바꾸려면(예: 직접 산 도메인 연결) `next.config.ts`의 `basePath`를 `""`로, `src/lib/seo.ts`의 `SITE_ORIGIN`을 새 주소로 바꾼 뒤 GitHub 리포 Settings → Pages → Custom domain에 도메인을 입력하세요.
 
 ---
 

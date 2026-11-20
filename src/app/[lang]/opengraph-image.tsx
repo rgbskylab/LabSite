@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getSite } from "@/lib/data";
+import { SITE_URL } from "@/lib/seo";
 import { LANGS } from "@/lib/types";
 
 /**
@@ -56,7 +57,7 @@ export default async function OpengraphImage({
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div style={{ width: 64, height: 2, background: "#141414" }} />
           <div style={{ display: "flex", fontSize: 26, color: "#6b6b6b" }}>
-            {`${site.affiliation.en}  ·  skylab.quv.kr`}
+            {`${site.affiliation.en}  ·  ${SITE_URL.replace(/^https?:\/\//, "")}`}
           </div>
         </div>
       </div>
