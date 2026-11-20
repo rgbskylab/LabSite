@@ -1,6 +1,6 @@
 // Claude PR review for GitHub Actions.
 // Sends the pull request's diff to the Claude Messages API and posts the review as one
-// PR comment, which is updated in place on every new push.
+// PR comment. If the workflow runs again for the same PR, that comment is updated in place.
 // Auth: Anthropic Workload Identity Federation. The SDK reads ANTHROPIC_FEDERATION_RULE_ID,
 // ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID and
 // ANTHROPIC_IDENTITY_TOKEN_FILE from the environment, so no API key is stored anywhere.
