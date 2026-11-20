@@ -1,4 +1,5 @@
-# PR이 열리거나 새 커밋이 올라오면 Claude가 diff를 리뷰하고 PR에 댓글을 남김
+# PR이 열리면 Claude가 diff를 리뷰하고 PR에 댓글을 남김 (이후 커밋에는 리뷰하지 않음)
+# 초안 PR은 열릴 때 건너뛰고, 리뷰 준비 완료로 바뀔 때 리뷰함
 # Claude Code(claude-code-action) 대신 Claude API(Messages API)를 직접 호출하므로
 # 사용량이 API 크레딧으로 청구됨
 # 인증: Anthropic Workload Identity Federation (API 키 없음)
@@ -6,7 +7,7 @@ name: Claude PR Review
 
 on:
   pull_request:
-    types: [opened, synchronize, ready_for_review, reopened]
+    types: [opened, ready_for_review]
 
 permissions:
   contents: read
