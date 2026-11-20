@@ -1,45 +1,91 @@
 import Link from "next/link";
 import type { Lang, SiteConfig } from "@/lib/types";
+import { getDict } from "@/lib/i18n";
+import { LogoMark } from "./LogoMark";
+import { ExternalMark } from "./ExternalMark";
 
 export function Footer({ lang, site }: { lang: Lang; site: SiteConfig }) {
   const year = 2026; // 빌드시 고정 (원하면 site.yml 로 옮길 수 있음)
   const c = site.contact;
+  const t = getDict(lang);
+  const groups: { label: string; links: { href: string; label: string }[] }[] = [
+    {
+      label: t.footer.lab,
+      links: [
+        { href: `/${lang}/research`, label: t.nav.research },
+        { href: `/${lang}/members`, label: t.nav.members },
+        { href: `/${lang}/photos`, label: t.nav.photos },
+      ],
+    },
+    {
+      label: t.footer.output,
+      links: [
+        { href: `/${lang}/publications`, label: t.nav.publications },
+        { href: `/${lang}/projects`, label: t.nav.projects },
+      ],
+    },
+    {
+      label: t.footer.news,
+      links: [
+        { href: `/${lang}/notices`, label: t.nav.notices },
+        { href: `/${lang}/contact`, label: t.nav.contact },
+      ],
+    },
+  ];
+  const external = [
+    c.github && { href: c.github, label: "GitHub" },
+    c.scholar && { href: c.scholar, label: "Google Scholar" },
+  ].filter(Boolean) as { href: string; label: string }[];
+
   return (
-    <footer className="mt-24">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <p className="font-medium">{site.name[lang]}</p>
-          <p className="mt-1 text-sm text-muted">{site.affiliation[lang]}</p>
+    <footer className="mx-auto mt-24 w-full max-w-7xl px-5 pt-16 pb-8 sm:px-8 lg:mt-32 lg:px-12 lg:pt-24 lg:pb-10">
+      <div className="flex flex-col gap-10 pb-10 lg:flex-row lg:justify-between lg:gap-14 lg:pb-12">
+        <div className="flex flex-col gap-2.5 lg:max-w-md">
+          <span className="flex items-center gap-2.5">
+            <LogoMark />
+            <span className="font-serif text-[22px] font-medium">{site.name[lang]}</span>
+          </span>
+          <span className="text-[15px]">
+            {site.fullName[lang]} · {site.affiliation[lang]}
+          </span>
+          {(c.address || c.email) && (
+            <address className="text-sm leading-relaxed text-muted not-italic">
+              {c.address && <span className="block">{c.address[lang]}</span>}
+              {c.email && (
+                <a href={`mailto:${c.email}`} className="text-foreground hover:text-accent">
+                  {c.email}
+                </a>
+              )}
+            </address>
+          )}
         </div>
-        <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted">
-          <Link href={`/${lang}/research`} className="hover:text-foreground">
-            {lang === "ko" ? "연구" : "Research"}
-          </Link>
-          <Link href={`/${lang}/photos`} className="hover:text-foreground">
-            {lang === "ko" ? "갤러리" : "Photos"}
-          </Link>
-          <Link href={`/${lang}/contact`} className="hover:text-foreground">
-            {lang === "ko" ? "연락처" : "Contact"}
-          </Link>
-          {c.email && (
-            <a href={`mailto:${c.email}`} className="hover:text-foreground">
-              {c.email}
-            </a>
-          )}
-          {c.github && (
-            <a href={c.github} target="_blank" rel="noreferrer" className="hover:text-foreground">
-              GitHub
-            </a>
-          )}
-          {c.scholar && (
-            <a href={c.scholar} target="_blank" rel="noreferrer" className="hover:text-foreground">
-              Scholar
-            </a>
-          )}
+        <div className="grid grid-cols-3 gap-4 sm:gap-14 lg:flex">
+          {groups.map((g) => (
+            <nav key={g.label} aria-label={g.label} className="flex flex-col text-[15px] lg:min-w-28">
+              <span className="pb-1 text-[13px] font-bold text-muted">{g.label}</span>
+              {g.links.map((ln) => (
+                <Link key={ln.href} href={ln.href} className="py-2 hover:text-accent">
+                  {ln.label}
+                </Link>
+              ))}
+            </nav>
+          ))}
         </div>
       </div>
-      <div className="mx-auto max-w-6xl px-6 pb-8 text-xs text-muted">
-        © {year} {site.name[lang]}
+      <div className="flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-border pt-5 text-[13px] text-muted">
+        <span>
+          © {year} {site.name[lang]}
+        </span>
+        {external.length > 0 && (
+          <span className="flex gap-4">
+            {external.map((x) => (
+              <a key={x.href} href={x.href} target="_blank" rel="noreferrer" className="hover:text-foreground">
+                {x.label}
+                <ExternalMark label={t.common.newTab} />
+              </a>
+            ))}
+          </span>
+        )}
       </div>
     </footer>
   );

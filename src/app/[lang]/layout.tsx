@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR } from "next/font/google";
+import { Noto_Sans_KR, Noto_Serif_KR, Source_Serif_4 } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { getDict } from "@/lib/i18n";
@@ -9,11 +9,22 @@ import { SITE_URL, absUrl } from "@/lib/seo";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-// 폰트는 하나만 씁니다 — 한글·영문 모두 커버하는 Noto Sans KR
+// 본문은 Noto Sans KR, 제목은 세리프(영문 Source Serif 4 + 한글 Noto Serif KR)
 const sans = Noto_Sans_KR({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-sans-var",
+  display: "swap",
+});
+const serifLatin = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif-latin",
+  display: "swap",
+});
+const serifKr = Noto_Serif_KR({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-serif-kr",
   display: "swap",
 });
 
@@ -84,7 +95,12 @@ export default async function LangLayout({
   };
 
   return (
-    <html lang={l} className={`${sans.variable} h-full`} suppressHydrationWarning>
+    <html
+      lang={l}
+      className={`${sans.variable} ${serifLatin.variable} ${serifKr.variable} h-full`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
@@ -93,7 +109,7 @@ export default async function LangLayout({
         />
       </head>
       <body className="flex min-h-full flex-col">
-        <Header lang={l} siteName={site.name[l]} affiliation={site.affiliation[l]} nav={t.nav} />
+        <Header lang={l} siteName={site.name[l]} nav={t.nav} />
         <main className="flex-1">{children}</main>
         <Footer lang={l} site={site} />
       </body>

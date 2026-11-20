@@ -27,7 +27,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
   return (
     <div>
       <PageHeader title={t.title} />
-      <div className="mx-auto max-w-6xl px-6 pb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 pb-16">
         {groups.map((g) => (
           <section key={g.type} className="mb-14 last:mb-0">
             <h2 className="flex items-baseline gap-2 text-sm font-bold uppercase tracking-widest">

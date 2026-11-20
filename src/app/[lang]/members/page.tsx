@@ -1,6 +1,7 @@
 import type { Lang, Alumnus, Member, MemberRole, NamedLink } from "@/lib/types";
 import { getMembers, getAlumni } from "@/lib/data";
 import { getDict, ROLE_ORDER, ROLE_LABEL, DEGREE_LABEL } from "@/lib/i18n";
+import { ExternalMark } from "@/components/ExternalMark";
 import { pageMetadata } from "@/lib/seo";
 import { PageHeader } from "@/components/PageHeader";
 import { Avatar } from "@/components/Avatar";
@@ -31,7 +32,7 @@ export default async function MembersPage({ params }: { params: Promise<{ lang: 
   return (
     <div>
       <PageHeader title={t.title} />
-      <div className="mx-auto max-w-6xl px-6 pb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 pb-16">
         {groups.map((g) => (
           <section key={g.role} className="mb-14">
             <h2 className="text-sm font-bold uppercase tracking-widest">
@@ -100,8 +101,9 @@ function personLinks(p: {
   ].filter(Boolean) as { href: string; label: string }[];
 }
 
-function LinkRow({ links }: { links: { href: string; label: string }[] }) {
+function LinkRow({ links, lang }: { links: { href: string; label: string }[]; lang: Lang }) {
   if (links.length === 0) return null;
+  const newTab = getDict(lang).common.newTab;
   return (
     <p className="mt-1.5 flex flex-wrap gap-x-2.5 gap-y-0.5 text-sm text-muted">
       {links.map((x) => (
@@ -113,6 +115,7 @@ function LinkRow({ links }: { links: { href: string; label: string }[] }) {
           className="underline underline-offset-2 hover:text-foreground"
         >
           {x.label}
+          {!x.href.startsWith("mailto:") && <ExternalMark label={newTab} arrow={false} />}
         </a>
       ))}
     </p>
@@ -156,7 +159,7 @@ function ProfessorBlock({ member, lang }: { member: Member; lang: Lang }) {
           </ul>
         )}
 
-        <LinkRow links={personLinks(member)} />
+        <LinkRow links={personLinks(member)} lang={lang} />
       </div>
     </div>
   );
@@ -173,7 +176,7 @@ function MemberCard({ member, lang }: { member: Member; lang: Lang }) {
       {interests.length > 0 && (
         <p className="mt-1 text-sm leading-relaxed text-muted">{interests.join(" · ")}</p>
       )}
-      <LinkRow links={personLinks(member)} />
+      <LinkRow links={personLinks(member)} lang={lang} />
     </li>
   );
 }
@@ -197,7 +200,7 @@ function AlumnusCard({
           {nowLabel} · {alumnus.now[lang]}
         </p>
       )}
-      <LinkRow links={personLinks(alumnus)} />
+      <LinkRow links={personLinks(alumnus)} lang={lang} />
     </li>
   );
 }

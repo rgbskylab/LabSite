@@ -33,8 +33,38 @@ about:
     images, analyzing behavior from video, and predicting changes in body shape
     and health condition.
 
+# 홈 큰 제목과 소개 문장 (공지사항 아래, 영상 위에 크게 보입니다)
+#  headline 의 줄바꿈은 넓은 화면에서만 적용되고, 휴대폰에서는 자연스럽게 이어집니다.
+headline:
+  ko: |-
+    컴퓨터 비전과 딥러닝으로
+    사람을 이해합니다
+  en: |-
+    Understanding people through
+    computer vision and deep learning
+intro:
+  ko: 2D 이미지에서 3D 인체를 복원하고, 영상으로 행동을 분석하며, 체형과 건강 상태의 변화를 예측하는 모델을 만듭니다.
+  en: We reconstruct 3D human bodies from 2D images, analyze behavior from video, and build models that predict changes in body shape and health.
+
+# 홈 영상 — youtube 나 src 중 하나만 채우면 "영상 재생" 버튼이 나타납니다.
+#  youtube: YouTube 주소나 영상 ID (예: https://youtu.be/abc123XYZ)
+#  src:     public/videos/ 에 올린 영상 파일 경로 (예: /videos/intro.mp4)
+#  poster:  (선택) 썸네일 사진 경로. 없으면 움직이는 인체 단면 그림이 썸네일이 됩니다.
+#  둘 다 비워 두면 영상 자리에 움직이는 인체 단면 그림만 보입니다.
+video:
+  youtube: ""
+  src: ""
+  poster: ""
+  title:
+    ko: 연구실 소개 영상
+    en: Lab introduction video
+
 # 연구 분야 (Research 페이지)
 #  description(설명 문단)은 선택 항목입니다. 지금은 제목만 노출합니다.
+#    각 항목의 title 아래에 이렇게 넣으면 연구 페이지와 홈 카드에 문단으로 보입니다:
+#      description:
+#        ko: 한국어 설명
+#        en: English description
 #  model: 3D 뷰어를 붙이고 싶을 때만 씁니다.
 #         "body"  → 계측치 슬라이더로 변형되는 파라메트릭 인체 데모
 #         "/models/파일.glb|ply|obj|stl" → public/models/ 에 올린 실제 모델
@@ -42,10 +72,6 @@ research:
   - title:
       ko: 컴퓨터 비전 기반 3D 인체 복원
       en: 3D Human Reconstruction with Computer Vision
-    model: body
-    modelCaption:
-      ko: 계측치(키·가슴·허리·엉덩이둘레)로 인체 표면을 실시간 생성하는 데모입니다.
-      en: A live demo that generates a body surface from four measurements.
   - title:
       ko: 딥러닝 기반 행동 분석
       en: Deep Learning-Based Behavior Analysis

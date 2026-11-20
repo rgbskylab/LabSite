@@ -3,21 +3,38 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ─────────────────────────────────────────────────────────────
-   색은 흑백 4개(배경·글자·보조글자·선)뿐입니다.
+   웜 미니멀 테마 — 종이색 바탕 + 하늘색 포인트 하나.
    테마를 바꾸려면 아래 값만 수정하세요.
+     background 바탕 · foreground 글자 · muted 보조 글자 · border 선
+     surface    카드 바탕 · tint 하늘색 패널(공지 카드·아이콘 원)
+     accent     링크·강조 색 · band 하단 남색 띠
    ───────────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #141414;
-  --muted: #6b6b6b;
-  --border: #e3e3e3;
+  --background: #f4f2ec;
+  --foreground: #1d2027;
+  --muted: #5a5e66;
+  --border: #d9d5cb;
+  --surface: #eae7df;
+  --tint: #d6e2eb;
+  --accent: #2f5e8c;
+  --band: #17233a;
+  --band-foreground: #f4f2ec;
+  --band-muted: #b7c0ce;
+  --band-border: #4a5a78;
 }
 
 .dark {
-  --background: #101010;
-  --foreground: #ededed;
-  --muted: #9a9a9a;
-  --border: #2b2b2b;
+  --background: #15181e;
+  --foreground: #ece9e1;
+  --muted: #a2a7b0;
+  --border: #2b3039;
+  --surface: #1e222a;
+  --tint: #1f2e44;
+  --accent: #8db4da;
+  --band: #1f2e44;
+  --band-foreground: #f4f2ec;
+  --band-muted: #b7c0ce;
+  --band-border: #4a5a78;
 }
 
 @theme inline {
@@ -25,7 +42,15 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-tint: var(--tint);
+  --color-accent: var(--accent);
+  --color-band: var(--band);
+  --color-band-foreground: var(--band-foreground);
+  --color-band-muted: var(--band-muted);
+  --color-band-border: var(--band-border);
   --font-sans: var(--font-sans-var), system-ui, sans-serif;
+  --font-serif: var(--font-serif-latin), var(--font-serif-kr), Georgia, serif;
 }
 
 html {
@@ -39,7 +64,80 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 한글은 단어 중간에서 줄이 바뀌지 않도록 (예: "복/원" 방지). 아주 긴 영문·URL 은 넘치지 않게 끊음 */
+:lang(ko) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 ::selection {
-  background: var(--foreground);
+  background: var(--accent);
   color: var(--background);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   움직임 — "동작 줄이기"를 켠 사용자에게는 모두 꺼집니다(맨 아래).
+   ───────────────────────────────────────────────────────────── */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes draw {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes scan {
+  0% { transform: translateY(0); opacity: 0; }
+  8% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateY(-580px); opacity: 0; }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes halo {
+  0% { box-shadow: 0 0 0 0 rgb(244 242 236 / 0.5); }
+  100% { box-shadow: 0 0 0 16px rgb(244 242 236 / 0); }
+}
+
+/* 페이지를 열 때 차례로 올라오기 (rise-1 … rise-5 로 지연) */
+.rise { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.rise-1 { animation-delay: 0.05s; }
+.rise-2 { animation-delay: 0.15s; }
+.rise-3 { animation-delay: 0.3s; }
+.rise-4 { animation-delay: 0.45s; }
+.rise-5 { animation-delay: 0.6s; }
+
+/* 인체 단면 그림 */
+.fade-in { animation: fade-in 1.6s ease-out 0.3s both; }
+.draw { stroke-dasharray: 100; animation: draw 1.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.scanline { animation: scan 5.5s cubic-bezier(0.45, 0, 0.55, 1) 1.8s infinite both; }
+.pulse-soft { animation: pulse-soft 2.4s ease-in-out infinite; }
+.halo { animation: halo 2.4s ease-out 2s infinite; }
+
+/* 카드 떠오르기 · 화살표 밀기 */
+.lift { transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s; }
+.lift:hover { transform: translateY(-4px); box-shadow: 0 18px 36px -24px rgb(29 32 39 / 0.45); }
+.go .arrow { display: inline-block; transition: transform 0.25s; }
+.go:hover .arrow { transform: translateX(4px); }
+
+/* 스크롤해서 화면에 들어올 때 나타나기 (지원 브라우저만, 나머지는 그냥 보임) */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 22%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .fade-in, .draw, .reveal, .pulse-soft, .halo { animation: none !important; }
+  .scanline { display: none; }
+  .lift, .go .arrow { transition: none; }
+  .lift:hover { transform: none; }
 }

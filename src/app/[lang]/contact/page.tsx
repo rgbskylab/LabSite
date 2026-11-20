@@ -21,7 +21,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
   return (
     <div>
       <PageHeader title={t.title} />
-      <div className="mx-auto max-w-3xl px-6 pb-16">
+      <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-8 lg:px-12">
         <dl className="space-y-5">
           {c.email && (
             <div className="flex flex-col gap-1 sm:flex-row sm:gap-6">
