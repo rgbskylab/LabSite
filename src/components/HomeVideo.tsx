@@ -18,11 +18,21 @@ function focusOnMount(el: HTMLElement | null) {
   el?.focus();
 }
 
+/** 동작 줄이기(prefers-reduced-motion) 설정이 없을 때만 소리 없이 자동 재생을 시작합니다. */
+function startAutoplay(el: HTMLVideoElement | null) {
+  if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  el.muted = true;
+  el.play().catch(() => {});
+}
+
 const POSTER_BG = "radial-gradient(90% 120% at 72% 45%, #24375C 0%, #17233A 62%)";
 
 /**
  * 홈 영상 블록.
- *  - site.yml 의 video.youtube 나 video.src 가 있으면: 썸네일 + "영상 재생" 버튼 → 누르면 그 자리에서 재생
+ *  - site.yml 의 video.youtube 가 있으면: 썸네일 + "영상 재생" 버튼 → 누르면 그 자리에서 재생
+ *  - video.src 가 있으면: 페이지가 열리자마자 소리 없이 반복 재생(브라우저는 소리 있는 자동 재생을 막습니다).
+ *    컨트롤 바로 소리를 켜거나 멈출 수 있습니다. 운영체제에서 "동작 줄이기"를 켠 사람에게는 자동 재생하지 않고
+ *    포스터만 보여 주며, 그때는 영상 앞부분 정보만 받습니다(preload="metadata").
  *  - 없으면: 움직이는 인체 단면 그림만 보입니다(장식)
  */
 export function HomeVideo({
@@ -61,14 +71,17 @@ export function HomeVideo({
             allowFullScreen
             className="absolute inset-0 size-full border-0"
           />
-        ) : playing && src ? (
+        ) : src && !yt ? (
           <video
-            ref={focusOnMount}
+            ref={startAutoplay}
             src={src}
             poster={video?.poster}
+            title={caption}
             controls
-            autoPlay
+            muted
+            loop
             playsInline
+            preload="metadata"
             className="absolute inset-0 size-full bg-black object-contain"
           />
         ) : (
