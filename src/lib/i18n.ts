@@ -25,6 +25,7 @@ export const dict = {
       fields: { height: "키", chest: "가슴둘레", waist: "허리둘레", hip: "엉덩이둘레" },
     },
     footer: { madeWith: "데이터 파일로 관리되는 연구실 홈페이지", lab: "연구실", output: "성과", news: "소식" },
+    common: { newTab: "(새 탭에서 열림)" },
   },
   en: {
     nav: { home: "Home", research: "Research", members: "Members", publications: "Publications", projects: "Projects", notices: "Notices", photos: "Photos", alumni: "Alumni", contact: "Contact", join: "Join us", menu: "Menu" },
@@ -49,6 +50,7 @@ export const dict = {
       fields: { height: "Height", chest: "Chest", waist: "Waist", hip: "Hip" },
     },
     footer: { madeWith: "A lab website managed entirely from data files", lab: "Lab", output: "Output", news: "News" },
+    common: { newTab: "(opens in new tab)" },
   },
 } as const;
 

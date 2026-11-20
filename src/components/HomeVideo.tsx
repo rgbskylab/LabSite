@@ -13,6 +13,11 @@ function youtubeId(v: string): string | undefined {
   return m?.[1];
 }
 
+/** 재생 버튼이 사라지고 플레이어가 생길 때, 키보드 포커스를 플레이어로 옮김 */
+function focusOnMount(el: HTMLElement | null) {
+  el?.focus();
+}
+
 const POSTER_BG = "radial-gradient(90% 120% at 72% 45%, #24375C 0%, #17233A 62%)";
 
 /**
@@ -49,6 +54,7 @@ export function HomeVideo({
       >
         {playing && yt ? (
           <iframe
+            ref={focusOnMount}
             src={`https://www.youtube-nocookie.com/embed/${yt}?autoplay=1&rel=0&playsinline=1`}
             title={caption}
             allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
@@ -57,6 +63,7 @@ export function HomeVideo({
           />
         ) : playing && src ? (
           <video
+            ref={focusOnMount}
             src={src}
             poster={video?.poster}
             controls

@@ -65,6 +65,8 @@ export function Header({ lang, siteName, nav }: { lang: Lang; siteName: string; 
         <div className="hidden items-center gap-2 lg:flex">
           <Link
             href={switchHref}
+            lang={otherLang}
+            hrefLang={otherLang}
             className="px-2 py-2 text-sm text-muted hover:text-foreground"
             aria-label={otherLang === "en" ? "Switch to English" : "한국어로 보기"}
           >
@@ -121,6 +123,8 @@ export function Header({ lang, siteName, nav }: { lang: Lang; siteName: string; 
             <div className="mt-2 flex items-center justify-between border-t border-border pt-2">
               <Link
                 href={switchHref}
+                lang={otherLang}
+                hrefLang={otherLang}
                 onClick={close}
                 className="py-3 text-sm text-muted"
                 aria-label={otherLang === "en" ? "Switch to English" : "한국어로 보기"}

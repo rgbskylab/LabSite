@@ -4,6 +4,7 @@ import { getSite, getPublications, getNotices } from "@/lib/data";
 import { getDict } from "@/lib/i18n";
 import { PublicationItem } from "@/components/PublicationItem";
 import { HomeVideo } from "@/components/HomeVideo";
+import { ExternalMark } from "@/components/ExternalMark";
 
 /** 홈·각 섹션이 같이 쓰는 가로 폭 */
 const CONTAINER = "mx-auto w-full max-w-7xl px-4 sm:px-8 lg:px-12";
@@ -27,6 +28,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
   return (
     <div className="pb-8">
+      {/* 화면에는 안 보이는 페이지 제목(스크린리더·검색엔진용). 공지가 맨 위에 와도 h1 이 먼저 오도록 */}
+      <h1 className="sr-only">
+        {site.name[l]} · {site.fullName[l]}
+      </h1>
+
       {/* 1. 공지사항 */}
       {featured && (
         <section aria-labelledby="home-notices" className={`${CONTAINER} flex flex-col gap-4 pt-10 lg:gap-6 lg:pt-16`}>
@@ -47,7 +53,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                     <time className="w-24 shrink-0 text-sm text-muted tabular-nums">{n.date.replace(/-/g, ".")}</time>
                     <span className="min-w-0 flex-1 font-medium">{n.title[l]}</span>
                     <span className="arrow text-accent" aria-hidden>
-                      →
+                      {n.link ? "↗" : "→"}
                     </span>
                   </NoticeLink>
                 </li>
@@ -67,7 +73,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <p className="m-0 text-[13px] leading-relaxed text-muted lg:text-[15px]">
               {site.affiliation[l]} · {site.fullName[l]}
             </p>
-            <h1
+            <h2
               id="home-intro"
               className="m-0 font-serif text-[38px] leading-[1.22] font-normal tracking-[-0.025em] lg:text-[clamp(40px,5.2vw,76px)] lg:leading-[1.16]"
             >
@@ -80,7 +86,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                     </span>
                   ))
                 : site.fullName[l]}
-            </h1>
+            </h2>
           </div>
           <div className="rise rise-4 flex flex-wrap items-end justify-between gap-x-12 gap-y-5">
             {site.intro && (
@@ -219,6 +225,7 @@ function NoticeLink({
     return (
       <a href={notice.link} target="_blank" rel="noreferrer" className={className}>
         {children}
+        <ExternalMark label={getDict(lang).common.newTab} arrow={false} />
       </a>
     );
   }
@@ -241,33 +248,36 @@ function FeaturedNotice({
   cta: string;
 }) {
   return (
-    <NoticeLink
-      notice={n}
-      lang={l}
-      className="lift go rise rise-2 flex flex-col gap-3.5 rounded-3xl bg-tint p-6 text-foreground lg:flex-row lg:flex-wrap lg:items-center lg:justify-between lg:gap-12 lg:rounded-[28px] lg:p-[clamp(28px,4vw,48px)]"
-    >
-      <div className="flex min-w-0 flex-col gap-3.5 lg:flex-[1_1_520px]">
-        <span className="flex flex-wrap items-center gap-x-3.5 gap-y-2 text-[13px] text-muted lg:text-sm">
-          {n.pinned && (
-            <span className="inline-flex items-center gap-2 rounded-full bg-background px-3 py-1 text-xs font-bold text-foreground lg:text-[13px]">
-              <span aria-hidden className="pulse-soft size-[7px] rounded-full bg-accent" />
-              {pinnedLabel}
-            </span>
+    // rise(처음 나타나기)는 바깥 div 에, lift(hover 때 떠오르기)는 링크에. 같은 요소에 두면 애니메이션이 hover 이동을 덮어씀
+    <div className="rise rise-2">
+      <NoticeLink
+        notice={n}
+        lang={l}
+        className="lift go flex flex-col gap-3.5 rounded-3xl bg-tint p-6 text-foreground lg:flex-row lg:flex-wrap lg:items-center lg:justify-between lg:gap-12 lg:rounded-[28px] lg:p-[clamp(28px,4vw,48px)]"
+      >
+        <div className="flex min-w-0 flex-col gap-3.5 lg:flex-[1_1_520px]">
+          <span className="flex flex-wrap items-center gap-x-3.5 gap-y-2 text-[13px] text-muted lg:text-sm">
+            {n.pinned && (
+              <span className="inline-flex items-center gap-2 rounded-full bg-background px-3 py-1 text-xs font-bold text-foreground lg:text-[13px]">
+                <span aria-hidden className="pulse-soft size-[7px] rounded-full bg-accent" />
+                {pinnedLabel}
+              </span>
+            )}
+            <time className="tabular-nums">{n.date.replace(/-/g, ".")}</time>
+          </span>
+          <h3 className="m-0 font-serif text-[25px] leading-[1.35] font-normal tracking-[-0.015em] text-balance lg:text-[clamp(28px,3vw,40px)] lg:leading-[1.3] lg:tracking-[-0.02em]">
+            {n.title[l]}
+            {n.link && <span aria-hidden> ↗</span>}
+          </h3>
+          {n.summary && (
+            <p className="m-0 max-w-[46em] text-sm leading-[1.7] text-muted lg:text-base">{n.summary[l]}</p>
           )}
-          <time className="tabular-nums">{n.date.replace(/-/g, ".")}</time>
+        </div>
+        <span className="mt-1 flex min-h-12 items-center justify-center gap-2 rounded-full bg-foreground px-[26px] text-[15px] font-medium text-background lg:mt-0 lg:min-h-[52px] lg:text-base">
+          {cta} <span className="arrow" aria-hidden>→</span>
         </span>
-        <h3 className="m-0 font-serif text-[25px] leading-[1.35] font-normal tracking-[-0.015em] text-balance lg:text-[clamp(28px,3vw,40px)] lg:leading-[1.3] lg:tracking-[-0.02em]">
-          {n.title[l]}
-          {n.link && <span aria-hidden> ↗</span>}
-        </h3>
-        {n.summary && (
-          <p className="m-0 max-w-[46em] text-sm leading-[1.7] text-muted lg:text-base">{n.summary[l]}</p>
-        )}
-      </div>
-      <span className="mt-1 flex min-h-12 items-center justify-center gap-2 rounded-full bg-foreground px-[26px] text-[15px] font-medium text-background lg:mt-0 lg:min-h-[52px] lg:text-base">
-        {cta} <span className="arrow" aria-hidden>→</span>
-      </span>
-    </NoticeLink>
+      </NoticeLink>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import type { Lang, Publication } from "@/lib/types";
 import { LAB_AUTHORS } from "@/lib/data";
 import { getDict } from "@/lib/i18n";
 import { CopyBibtex } from "./CopyBibtex";
+import { ExternalMark } from "./ExternalMark";
 
 function isLabAuthor(author: string): boolean {
   const family = author.trim().split(/\s+/).pop()?.toLowerCase() ?? "";
@@ -32,7 +33,9 @@ export function PublicationItem({
   showYear?: boolean;
   className?: string;
 }) {
-  const t = getDict(lang).pubs;
+  const d = getDict(lang);
+  const t = d.pubs;
+  const newTab = d.common.newTab;
   const primary =
     pub.url ||
     pub.pdf ||
@@ -49,7 +52,7 @@ export function PublicationItem({
       } ${className}`}
     >
       {pub.image && (
-        <a href={primary} target={primary ? "_blank" : undefined} rel="noreferrer">
+        <a href={primary} target={primary ? "_blank" : undefined} rel="noreferrer" tabIndex={-1} aria-hidden>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={pub.image}
@@ -66,6 +69,7 @@ export function PublicationItem({
           {primary ? (
             <a href={primary} target="_blank" rel="noreferrer" className="hover:text-accent">
               {pub.title}
+              <ExternalMark label={newTab} arrow={false} />
             </a>
           ) : (
             pub.title
@@ -82,13 +86,13 @@ export function PublicationItem({
         </p>
 
         <p className="flex flex-wrap items-baseline gap-x-[18px] gap-y-1 text-sm">
-          {pub.pdf && <Tag href={pub.pdf} label={t.pdf} />}
-          {pub.arxiv && <Tag href={arxivUrl(pub.arxiv)} label={t.arxiv} />}
-          {pub.url && <Tag href={pub.url} label={t.link} />}
-          {pub.code && <Tag href={pub.code} label={t.code} />}
-          {pub.doi && <Tag href={`https://doi.org/${pub.doi}`} label={t.doi} />}
-          {pub.slides && <Tag href={pub.slides} label={t.slides} />}
-          {pub.video && <Tag href={pub.video} label={t.video} />}
+          {pub.pdf && <Tag href={pub.pdf} label={t.pdf} newTab={newTab} />}
+          {pub.arxiv && <Tag href={arxivUrl(pub.arxiv)} label={t.arxiv} newTab={newTab} />}
+          {pub.url && <Tag href={pub.url} label={t.link} newTab={newTab} />}
+          {pub.code && <Tag href={pub.code} label={t.code} newTab={newTab} />}
+          {pub.doi && <Tag href={`https://doi.org/${pub.doi}`} label={t.doi} newTab={newTab} />}
+          {pub.slides && <Tag href={pub.slides} label={t.slides} newTab={newTab} />}
+          {pub.video && <Tag href={pub.video} label={t.video} newTab={newTab} />}
           <CopyBibtex bibtex={pub.bibtex} label={t.copyBib} copiedLabel={t.copied} />
         </p>
       </div>
@@ -96,10 +100,11 @@ export function PublicationItem({
   );
 }
 
-function Tag({ href, label }: { href: string; label: string }) {
+function Tag({ href, label, newTab }: { href: string; label: string; newTab: string }) {
   return (
     <a href={href} target="_blank" rel="noreferrer" className="font-semibold text-accent hover:underline underline-offset-4">
-      {label} ↗
+      {label}
+      <ExternalMark label={newTab} />
     </a>
   );
 }

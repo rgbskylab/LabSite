@@ -4,6 +4,7 @@ import { getNotices } from "@/lib/data";
 import { getDict } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { PageHeader } from "@/components/PageHeader";
+import { ExternalMark } from "@/components/ExternalMark";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -35,7 +36,7 @@ export default async function NoticesPage({ params }: { params: Promise<{ lang: 
                 </time>
                 <h2 className="mt-0.5 font-medium leading-snug">
                   {n.title[l]}
-                  {external && " ↗"}
+                  {external && <ExternalMark label={getDict(l).common.newTab} />}
                 </h2>
                 {n.summary && <p className="mt-1 text-muted">{n.summary[l]}</p>}
               </>

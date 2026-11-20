@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Lang, SiteConfig } from "@/lib/types";
 import { getDict } from "@/lib/i18n";
 import { LogoMark } from "./LogoMark";
+import { ExternalMark } from "./ExternalMark";
 
 export function Footer({ lang, site }: { lang: Lang; site: SiteConfig }) {
   const year = 2026; // 빌드시 고정 (원하면 site.yml 로 옮길 수 있음)
@@ -79,7 +80,8 @@ export function Footer({ lang, site }: { lang: Lang; site: SiteConfig }) {
           <span className="flex gap-4">
             {external.map((x) => (
               <a key={x.href} href={x.href} target="_blank" rel="noreferrer" className="hover:text-foreground">
-                {x.label} ↗
+                {x.label}
+                <ExternalMark label={t.common.newTab} />
               </a>
             ))}
           </span>
