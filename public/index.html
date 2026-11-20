@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>SKY LAB</title>
+  <script>
+    // 정적 호스팅(GitHub Pages)에는 서버가 없어서, 예전 src/proxy.ts 가 하던
+    // "첫 화면(/)에서 언어별 페이지로 이동"을 브라우저에서 대신 처리합니다.
+    // 한국어 브라우저면 ko, 그 외 언어면 en, 언어 정보가 없으면 기본값 ko.
+    (function () {
+      var pref = (navigator.languages && navigator.languages[0]) || navigator.language || "";
+      var lang = !pref ? "ko" : pref.toLowerCase().indexOf("ko") === 0 ? "ko" : "en";
+      // 상대 경로라서 사이트가 루트(/)에 있든 하위 경로(/LabSite/)에 있든 그대로 동작합니다.
+      location.replace(lang + "/");
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=ko/"></noscript>
+</head>
+<body>
+  <p><a href="ko/">한국어</a> · <a href="en/">English</a></p>
+</body>
+</html>
