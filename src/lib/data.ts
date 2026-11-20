@@ -2,6 +2,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { load as yamlLoad } from "js-yaml";
 import { parseBibtex } from "./bibtex";
+import { withBasePath } from "./base-path";
 import type {
   Member,
   Alumnus,
@@ -49,7 +50,16 @@ function link(v: unknown, prefix = ""): string | undefined {
   const s = typeof v === "string" ? v.trim() : "";
   if (!s) return undefined;
   if (/^(https?:)?\/\//.test(s) || s.startsWith("mailto:")) return s;
-  return prefix ? prefix + s.replace(/^\/+/, "") : s;
+  return prefix ? prefix + s.replace(/^\/+/, "") : withBasePath(s);
+}
+
+/**
+ * public/ 폴더 파일 경로 정리 — 데이터에는 "/members/a.jpg" 처럼 적고,
+ * 사이트가 하위 경로(/LabSite)에서 열려도 깨지지 않도록 여기서 basePath 를 붙입니다.
+ */
+function asset(v: unknown): string | undefined {
+  const s = typeof v === "string" ? v.trim() : "";
+  return s ? withBasePath(s) : undefined;
 }
 
 /** 자유 링크 목록: [{ label, url }] */
@@ -97,7 +107,7 @@ export function getSite(): SiteConfig {
       return {
         title: loc(o.title),
         description: o.description ? loc(o.description) : undefined,
-        model: (o.model as string) || undefined,
+        model: asset(o.model), // "body" 같은 키워드는 그대로, "/models/…" 는 basePath 적용
         modelCaption: o.modelCaption ? loc(o.modelCaption) : undefined,
       };
     }),
@@ -126,7 +136,7 @@ export function getMembers(): Member[] {
       name: loc(o.name),
       role: (o.role as Member["role"]) ?? "staff",
       email: (o.email as string) || undefined,
-      photo: (o.photo as string) || undefined,
+      photo: asset(o.photo),
       homepage: link(o.homepage),
       scholar: link(o.scholar, "https://scholar.google.com/citations?user="),
       github: link(o.github, "https://github.com/"),
@@ -160,7 +170,7 @@ export function getAlumni(): Alumnus[] {
         graduated: typeof o.graduated === "number" ? o.graduated : 0,
         thesis: o.thesis ? loc(o.thesis) : undefined,
         now: o.now ? loc(o.now) : undefined,
-        photo: (o.photo as string) || undefined,
+        photo: asset(o.photo),
         homepage: link(o.homepage),
         scholar: link(o.scholar, "https://scholar.google.com/citations?user="),
         github: link(o.github, "https://github.com/"),
@@ -173,7 +183,15 @@ export function getAlumni(): Alumnus[] {
 }
 
 export function getPublications(): Publication[] {
-  return parseBibtex(read("publications.bib"));
+  return parseBibtex(read("publications.bib")).map((p) => ({
+    ...p,
+    // 썸네일·PDF·슬라이드 등을 public/ 에 올린 경우 basePath 적용 (외부 URL 은 그대로)
+    image: asset(p.image),
+    url: asset(p.url),
+    pdf: asset(p.pdf),
+    slides: asset(p.slides),
+    video: asset(p.video),
+  }));
 }
 
 export function getNotices(): Notice[] {
@@ -188,7 +206,7 @@ export function getNotices(): Notice[] {
         title: loc(o.title),
         summary: o.summary ? loc(o.summary) : undefined,
         body: o.body ? loc(o.body) : undefined,
-        link: (o.link as string) || undefined,
+        link: asset(o.link),
       };
     })
     .sort((a, b) => {
@@ -243,7 +261,7 @@ export function getGallery(): Photo[] {
     .map((p) => {
       const o = p as Record<string, unknown>;
       return {
-        src: String(o.src ?? ""),
+        src: asset(o.src) ?? "",
         caption: loc(o.caption),
         date: o.date ? String(o.date) : undefined,
       };

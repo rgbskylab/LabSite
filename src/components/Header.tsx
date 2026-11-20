@@ -45,8 +45,10 @@ export function Header({
     { href: `/${lang}/contact`, label: nav.contact },
   ];
 
+  // trailingSlash 설정으로 경로가 "/ko/" 처럼 / 로 끝나므로 비교 전에 끝의 / 를 뗍니다
+  const current = pathname.replace(/\/+$/, "") || "/";
   const isActive = (href: string) =>
-    href === `/${lang}` ? pathname === href : pathname.startsWith(href);
+    href === `/${lang}` ? current === href : current === href || current.startsWith(`${href}/`);
 
   // 현재 경로에서 언어만 바꾼 대상 경로
   const otherLang: Lang = lang === "ko" ? "en" : "ko";
