@@ -130,7 +130,7 @@
   email: 
   github: "https://github.com/kimsunggak"
   joined: 2026
-  photo: "/members/skk.jpeg"                # public/members/ 에 사진 넣고 /members/파일명 으로 지정
+  photo: "/members/sunggak-kim.jpg"                # public/members/ 에 사진 넣고 /members/파일명 으로 지정
   interests:
     ko: [CV,Deep learning,3D Reconstruction]
     en: [CV,Deep learning,3D Reconstruction]

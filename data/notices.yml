@@ -28,9 +28,30 @@
 #   link: https://example.com      # (선택) 넣으면 상세 대신 외부링크로 이동
 # ╚════════════════════════════════════════════════════════════╝
 
+- id: 2027-spring-recruit
+  date: 2026-11-23
+  pinned: true
+  title:
+    ko: 2027학년도 상반기 대학원생·학부연구생 모집
+    en: Spring 2027 Recruitment of Graduate & Undergraduate Researchers
+  summary:
+    ko: 컴퓨터 비전·딥러닝 기반 3D 인체 복원, 행동 분석, 예측 연구에 관심 있는 대학원생과 학부연구생을 모집합니다.
+    en: We are recruiting students interested in computer vision and deep learning for 3D human reconstruction, behavior analysis, and prediction.
+  body:
+    ko: |
+      우리 연구실은 2027학년도 상반기 함께 연구할 대학원생과 학부연구생을 모집합니다.
+
+      2D 이미지에서 3D 인체를 복원하고, 영상으로 행동을 분석하며, 체형·건강 변화를 예측하는 연구를 함께할 분을 기다립니다.
+      관심 있는 분은 지도교수 이메일로 CV와 함께 연락 주세요.
+    en: |
+      Our lab is recruiting graduate students and undergraduate researchers for Spring 2027.
+
+      We welcome those interested in 3D human reconstruction from images, video-based behavior analysis, and predictive modeling.
+      Please email the PI with your CV.
+
 - id: 2026-recruit
   date: 2026-07-01
-  pinned: true
+  pinned: false
   title:
     ko: 2026학년도 하반기 대학원생·학부연구생 모집
     en: Fall 2026 Recruitment of Graduate & Undergraduate Researchers
